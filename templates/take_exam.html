@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Imtihon topshirish</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg">
+                <div class="card-header bg-warning">
+                    <h4 class="mb-0 text-dark">Imtihon: {{ exam.subject.name }}</h4>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        
+                        {% for question in questions %}
+                            <div class="mb-3">
+                                <label class="form-label">{{ forloop.counter }}. {{ question }}</label>
+                                <select name="question_{{ forloop.counter0 }}" class="form-select">
+                                    <option value="to‘g‘ri">To‘g‘ri</option>
+                                    <option value="noto‘g‘ri">Noto‘g‘ri</option>
+                                </select>
+                            </div>
+                        {% endfor %}
+
+                        <div class="d-grid">
+                            <button class="btn btn-primary" type="submit">Imtihonni topshirish</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

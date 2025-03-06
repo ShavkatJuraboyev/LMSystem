@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Talaba profili</h2>
+<h3>Mening fanlarim</h3>
+<ul>
+  {% for subject in subjects %}
+  <li>{{ subject.name }}</li>
+  {% endfor %}
+</ul>
+<h3>Yo‘qlama</h3>
+<ul>
+  {% for attendance in attendance_records %}
+  <li>{{ attendance.date }} - {{ attendance.status }}</li>
+  {% endfor %}
+</ul>
+{% endblock %}

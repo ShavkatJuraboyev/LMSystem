@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="mb-4">Imtihon yaratish</h2>
+<form method="post" class="needs-validation" novalidate>
+  {% csrf_token %}
+  <div class="mb-3">
+    <label for="id_subject" class="form-label">Subject</label>
+    {{ form.subject }}
+  </div>
+  <div class="mb-3">
+    <label for="id_group" class="form-label">Group</label>
+    {{ form.group }}
+  </div>
+  <div class="mb-3">
+    <label for="id_title" class="form-label">Title</label>
+    {{ form.title }}
+  </div>
+  <div class="mb-3">
+    <label for="id_date" class="form-label">Date</label>
+    {{ form.date }}
+  </div>
+  <div class="mb-3">
+    <label for="id_max_score" class="form-label">Max Score</label>
+    {{ form.max_score }}
+  </div></div>
+  <button type="submit" class="btn btn-primary">Saqlash</button>
+</form>
+{% endblock %}

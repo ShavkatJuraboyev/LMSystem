@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Dekan paneli</h2>
+<h3>Kafedralar</h3>
+<ul>
+  {% for kafedra in kafedralar %}
+  <li>{{ kafedra.name }}</li>
+  {% endfor %}
+</ul>
+{% endblock %}

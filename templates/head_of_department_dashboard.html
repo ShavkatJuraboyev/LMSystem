@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Kafedra mudiri paneli</h2>
+<h3>{{ kafedra.name }}</h3>
+<h3>O‘qituvchilar</h3>
+<ul>
+  {% for teacher in teachers %}
+  <li>{{ teacher.get_full_name }}</li>
+  {% endfor %}
+</ul>
+{% endblock %}

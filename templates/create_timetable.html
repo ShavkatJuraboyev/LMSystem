@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-8">
+      <div class="card shadow-lg">
+          <div class="card-header bg-primary text-white">
+              <h4 class="mb-0">Dars jadvali yaratish</h4>
+          </div>
+          <div class="card-body">
+              <form method="post" class="needs-validation" novalidate>
+                  {% csrf_token %}
+                  
+                    <div class="mb-3">
+                      <label for="id_teacher" class="form-label">O‘qituvchi</label>
+                      <div class="input-group">
+                        {{ form.teacher }}
+                      </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                      <label for="id_subject" class="form-label">Fan</label>
+                      <div class="input-group">
+                        {{ form.subject }}
+                      </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                      <label for="id_group" class="form-label">Guruh</label>
+                      <div class="input-group">
+                        {{ form.group }}
+                      </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                      <label for="id_day_of_week" class="form-label">Hafta kuni</label>
+                      <div class="input-group">
+                        {{ form.day_of_week }}
+                      </div>
+                    </div>
+                    
+                    <div class="row">
+                      <div class="col-md-6 mb-3">
+                        <label for="id_start_time" class="form-label">Boshlanish vaqti</label>
+                        <div class="input-group">
+                          {{ form.start_time }}
+                        </div>
+                      </div>
+                      <div class="col-md-6 mb-3">
+                        <label for="id_end_time" class="form-label">Tugash vaqti</label>
+                        <div class="input-group">
+                          {{ form.end_time }}
+                        </div>
+                      </div>
+                    </div>
+
+                  <div class="d-grid">
+                      <button class="btn btn-primary" type="submit">Saqlash</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
+{% endblock %}
