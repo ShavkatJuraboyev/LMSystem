@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<meta name="author" content="">
+	<meta name="robots" content="noindex, nofollow">
+	<title>{% block title %}LMS{% endblock %}</title>
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" type="image/x-icon" href="{% static 'lms/assets/img/favicon.png' %}">
+
+	<!-- Theme Script js -->
+	<script src="{% static 'lms/assets/js/theme-script.js' %}"></script>
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="{% static 'lms/assets/css/bootstrap.min.css' %}">
+
+	 <!-- Feather CSS -->
+	<link rel="stylesheet" href="{% static 'lms/assets/plugins/icons/feather/feather.css' %}">
+
+	<!-- Tabler Icon CSS -->
+	<link rel="stylesheet" href="{% static 'lms/assets/plugins/tabler-icons/tabler-icons.css' %}">
+
+	  <!-- Owl Carousel -->
+	<link rel="stylesheet" href="{% static 'lms/assets/css/owl.carousel.min.css' %}">
+
+	<!-- Daterangepikcer CSS -->
+	<link rel="stylesheet" href="{% static 'lms/assets/plugins/daterangepicker/daterangepicker.css' %}">
+
+	<!-- Datetimepicker CSS -->
+	<link rel="stylesheet" href="{% static 'lms/assets/css/bootstrap-datetimepicker.min.css' %}">
+
+	<!-- Fontawesome CSS -->
+	<link rel="stylesheet" href="{% static 'lms/assets/plugins/fontawesome/css/fontawesome.min.css' %}">
+	<link rel="stylesheet" href="{% static 'lms/assets/plugins/fontawesome/css/all.min.css' %}">
+
+	<!-- Select2 CSS -->
+	<link rel="stylesheet" href="{% static 'lms/assets/plugins/select2/css/select2.min.css' %}">
+
+	<!-- Main CSS -->
+	<link rel="stylesheet" href="{% static 'lms/assets/css/style.css' %}">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+
+	
+
+	<!-- Owl Carousel CSS -->
+	<link rel="stylesheet" href="{% static 'lms/assets/plugins/owlcarousel/owl.carousel.min.css' %}">
+	<link rel="stylesheet" href="{% static 'lms/assets/plugins/owlcarousel/owl.theme.default.min.css' %}">
+
+
+</head>
+<body>
+
+ 
+
+    <div class="main-wrapper">
+        <!-- Header --> 
+        {% include 'base/header.html' %}
+
+        <!-- Sidebar -->
+        {% include 'base/sidebar.html' %}
+
+
+        {% block content %}
+
+        {% endblock %}
+
+    </div>
+
+
+	<!-- jQuery -->
+	<script src="{% static 'lms/assets/js/jquery-3.7.1.min.js' %}"></script>
+
+	<!-- Bootstrap Core JS -->
+	<script src="{% static 'lms/assets/js/bootstrap.bundle.min.js' %}"></script>
+
+	<!-- Daterangepikcer JS -->
+	<script src="{% static 'lms/assets/js/moment.js' %}"></script>
+	<script src="{% static 'lms/assets/plugins/daterangepicker/daterangepicker.js' %}"></script>
+	<script src="{% static 'lms/assets/js/bootstrap-datetimepicker.min.js' %}"></script>
+
+	<!-- Owl Carousel -->
+	<script src="{% static 'lms/assets/js/owl.carousel.min.js' %}"></script>
+
+	<script src="{% static 'lms/assets/plugins/owlcarousel/owl.carousel.min.js' %}"></script>
+
+	<!-- Feather Icon JS -->
+	<script src="{% static 'lms/assets/js/feather.min.js' %}"></script>
+
+	<!-- Chart JS -->
+	<script src="{% static 'lms/assets/plugins/apexchart/apexcharts.min.js' %}"></script>
+	<script src="{% static 'lms/assets/plugins/apexchart/chart-data.js' %}"></script>
+
+	<!-- Slimscroll JS -->
+	<script src="{% static 'lms/assets/js/jquery.slimscroll.min.js' %}"></script>
+
+	<!-- Select2 JS -->
+	<script src="{% static 'lms/assets/plugins/select2/js/select2.min.js' %}"></script>
+
+	<!-- Custom JS -->
+	<script src="{% static 'lms/assets/js/script.js' %}"></script>
+
+	<!-- Counter JS -->
+	<script src="{% static 'lms/assets/plugins/countup/jquery.counterup.min.js' %}"></script>
+	<script src="{% static 'lms/assets/plugins/countup/jquery.waypoints.min.js' %}">	</script>
+
+
+</body>
+</html>
+

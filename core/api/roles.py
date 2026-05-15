@@ -1,0 +1,44 @@
+ROLE_SUPERADMIN = "superadmin"
+ROLE_ADMIN = "admin"
+ROLE_RECTOR = "rector"
+ROLE_PRORECTOR = "prorector"
+ROLE_DEAN = "dean"
+ROLE_DEPARTMENT_HEAD = "department_head"
+ROLE_TEACHER = "teacher"
+ROLE_STUDENT = "student"
+ROLE_QUALITY_CONTROL = "quality_control"
+
+MANAGEMENT_ROLES = {
+    ROLE_SUPERADMIN,
+    ROLE_ADMIN,
+    ROLE_RECTOR,
+    ROLE_PRORECTOR,
+    ROLE_DEAN,
+    ROLE_DEPARTMENT_HEAD,
+    ROLE_QUALITY_CONTROL,
+}
+
+ALL_ROLES = {
+    ROLE_SUPERADMIN,
+    ROLE_ADMIN,
+    ROLE_RECTOR,
+    ROLE_PRORECTOR,
+    ROLE_DEAN,
+    ROLE_DEPARTMENT_HEAD,
+    ROLE_TEACHER,
+    ROLE_STUDENT,
+    ROLE_QUALITY_CONTROL,
+}
+
+
+ROLE_LABELS = {
+    ROLE_SUPERADMIN: "Superadmin",
+    ROLE_ADMIN: "Admin",
+    ROLE_RECTOR: "Rektor",
+    ROLE_PRORECTOR: "Prorektor",
+    ROLE_DEAN: "Dekan",
+    ROLE_DEPARTMENT_HEAD: "Kafedra mudiri",
+    ROLE_TEACHER: "O'qituvchi",
+    ROLE_STUDENT: "Talaba",
+    ROLE_QUALITY_CONTROL: "Ta'lim sifati nazorati",
+}

@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
+from datetime import timedelta
+from django.utils.translation import gettext_lazy as _
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -38,22 +41,113 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'lms',  # LMS loyihangizni qo‘shing
+
+    "rest_framework",
+    "drf_spectacular",
+    "django_filters",
+
+
+    "core",
+    "structure",
+    "accounts",
+    "academics",
+    "journal",
+    "assessment",
+    "tasks",
+    "communication",
+    "documents",
+    "quality",
+    "analytics",
+    "integrations",
+    "audit",
+    
 ]
 
-AUTH_USER_MODEL = 'lms.CustomUser'
+AUTH_USER_MODEL = "accounts.User"
+
+LOGIN_URL = "/accounts/login/"
+LOGIN_REDIRECT_URL = "dashboard"
+LOGOUT_REDIRECT_URL = "login"
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "django.middleware.security.SecurityMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
+    "core.middleware.APILanguageMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+
 ROOT_URLCONF = 'config.urls'
+
+
+REST_FRAMEWORK = {
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ],
+    "DEFAULT_PERMISSION_CLASSES": [
+        "core.api.permissions.IsAuthenticatedAndActive",
+    ],
+    "DEFAULT_FILTER_BACKENDS": [
+        "django_filters.rest_framework.DjangoFilterBackend",
+        "rest_framework.filters.SearchFilter",
+        "rest_framework.filters.OrderingFilter",
+    ],
+    "DEFAULT_PAGINATION_CLASS": "core.api.pagination.StandardResultsSetPagination",
+    "DEFAULT_RENDERER_CLASSES": [
+        "core.api.renderers.StandardJSONRenderer",
+        "rest_framework.renderers.BrowsableAPIRenderer",
+    ],
+    "PAGE_SIZE": 20,
+}
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
+    "ROTATE_REFRESH_TOKENS": True,
+    "BLACKLIST_AFTER_ROTATION": True,
+    "AUTH_HEADER_TYPES": ("Bearer",),
+}
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "LMS API",
+    "DESCRIPTION": "Universitet va institutlar uchun LMS axborot tizimi API hujjatlari",
+    "VERSION": "1.0.0",
+    "SERVE_INCLUDE_SCHEMA": False,
+    "COMPONENT_SPLIT_REQUEST": True,
+    "SECURITY": [{"bearerAuth": []}],
+    "SWAGGER_UI_SETTINGS": {
+        "deepLinking": True,
+        "displayOperationId": True,
+        "persistAuthorization": True,
+        "filter": True,
+    },
+    "ENUM_NAME_OVERRIDES": {
+        "UserStatusEnum": "core.models.UserStatus",
+        "GenderEnum": "core.models.Gender",
+        "EducationFormEnum": "core.models.EducationForm",
+        "EducationLevelEnum": "core.models.EducationLevel",
+        "SemesterTypeEnum": "core.models.SemesterType",
+        "LessonTypeEnum": "core.models.LessonType",
+        "WeekDayEnum": "core.models.WeekDay",
+        "ContentStatusEnum": "core.models.ContentStatus",
+        "AttendanceStatusEnum": "core.models.AttendanceStatus",
+        "GradeStatusEnum": "core.models.GradeStatus",
+        "SubmissionStatusEnum": "core.models.SubmissionStatus",
+        "RequestStatusEnum": "core.models.RequestStatus",
+        "DocumentStatusEnum": "core.models.DocumentStatus",
+        "ApprovalStatusEnum": "core.models.ApprovalStatus",
+        "RiskLevelEnum": "core.models.RiskLevel",
+        "IntegrationStatusEnum": "core.models.IntegrationStatus",
+    },
+}
+
+
 
 TEMPLATES = [
     {
@@ -107,24 +201,24 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = 'uz'
-
-TIME_ZONE = 'Asia/Tashkent'
-
+LANGUAGE_CODE = "uz"
+LANGUAGES = [
+    ("uz", _("O'zbekcha")),
+    ("ru", _("Русский")),
+    ("en", _("English")),
+]
+LOCALE_PATHS = [BASE_DIR / "locale"]
+TIME_ZONE = "Asia/Tashkent"
 USE_I18N = True
-
 USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # collectstatic uchun
-
-# STATICFILES_DIRS = [
-#     os.path.join(BASE_DIR, 'static'),  # Statik fayllaringiz joylashgan katalog
-# ]
+STATIC_URL = "/static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
+STATICFILES_DIRS = [BASE_DIR / "static"]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
