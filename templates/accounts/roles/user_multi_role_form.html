@@ -1,0 +1,120 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="page-wrapper">
+    <div class="content">
+
+        <div class="d-md-flex d-block align-items-center justify-content-between mb-3">
+            <div>
+                <h3 class="page-title mb-1">{{ title }}</h3>
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item">
+                        <a href="{% url 'dashboard' %}">Bosh sahifa</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="{% url 'user_role_list' %}">Foydalanuvchi rollari</a>
+                    </li>
+                    <li class="breadcrumb-item active">Bir nechta rol biriktirish</li>
+                </ol>
+            </div>
+
+            <a href="{% url 'user_role_list' %}" class="btn btn-light">
+                <i class="ti ti-arrow-left me-2"></i>Orqaga
+            </a>
+        </div>
+
+        {% if form.errors %}
+            <div class="alert alert-danger">
+                {{ form.errors }}
+            </div>
+        {% endif %}
+
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Foydalanuvchiga bir nechta rol biriktirish</h4>
+            </div>
+
+            <form method="post">
+                {% csrf_token %}
+
+                <div class="card-body">
+                    <div class="alert alert-info">
+                        Bu sahifada bitta foydalanuvchiga 2 ta yoki undan ko‘p rol biriktirish mumkin.
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Foydalanuvchi</label>
+                            {{ form.user }}
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Rollar</label>
+                            {{ form.roles }}
+                            <small class="text-muted">
+                                CTRL bosib turib bir nechta rolni tanlang.
+                            </small>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Muassasa</label>
+                            {{ form.organization }}
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Fakultet</label>
+                            {{ form.faculty }}
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Kafedra</label>
+                            {{ form.department }}
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Guruh</label>
+                            {{ form.group }}
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Fan</label>
+                            {{ form.subject }}
+                        </div>
+
+                        <div class="col-md-3 mb-3">
+                            <label class="form-label">Boshlanish vaqti</label>
+                            {{ form.starts_at }}
+                        </div>
+
+                        <div class="col-md-3 mb-3">
+                            <label class="form-label">Tugash vaqti</label>
+                            {{ form.ends_at }}
+                        </div>
+
+                        <div class="col-md-12 mb-3">
+                            <div class="form-check form-switch">
+                                {{ form.is_active }}
+                                <label class="form-check-label">Faol</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-footer d-flex justify-content-end">
+                    <a href="{% url 'user_role_list' %}" class="btn btn-light me-2">
+                        Bekor qilish
+                    </a>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="ti ti-device-floppy me-2"></i>Saqlash
+                    </button>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

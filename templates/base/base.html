@@ -59,16 +59,18 @@
  
 
     <div class="main-wrapper">
-        <!-- Header --> 
-        {% include 'base/header.html' %}
+		{% if user.is_authenticated %}
 
-        <!-- Sidebar -->
-        {% include 'base/sidebar.html' %}
+			<!-- Header --> 
+			{% include 'base/header.html' %}
 
+			<!-- Sidebar -->
+			{% include 'base/sidebar.html' %}
 
-        {% block content %}
+		{% endif %}
 
-        {% endblock %}
+		{% block content %}
+		{% endblock %}
 
     </div>
 

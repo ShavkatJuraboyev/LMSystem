@@ -44,6 +44,15 @@
 					</ul>
 				</li>
 				<li>
+					<h6 class="submenu-hdr"><span>Rollar boshqaruvi</span></h6>
+					<ul>
+						<li><a href="{% url 'role_list' %}"><i class="ti ti-users-minus"></i><span>Rollar</span></a></li>
+						<li><a href="{% url 'role_create' %}"><i class="ti ti-shield-plus"></i><span>Yangi rol</span></a></li>
+						<li><a href="{% url 'user_role_list' %}"><i class="ti ti-user-question"></i><span>Foydalanuvchi rollari</span></a></li>
+						<li><a href="{% url 'user_role_create' %}"><i class="ti ti-user-question"></i><span>Rol biriktirish</span></a></li>
+					</ul>
+				</li>
+				<li>
 					<h6 class="submenu-hdr"><span>Layout</span></h6>
 					<ul>
 						<li><a href="layout-default.html"><i class="ti ti-layout-sidebar"></i><span>Default
@@ -89,7 +98,7 @@
 									class="menu-arrow"></span></a>
 							<ul>
 								<li><a href="teacher-grid.html">All Teachers</a></li>
-								<li><a href="teachers.html">Teacher List</a></li>
+								<li><a href="teachers.html">Teacher List</a></li> 
 								<li><a href="teacher-details.html">Teacher Details</a></li>
 								<li><a href="routine-teachers.html">Routine</a></li>
 							</ul>
@@ -263,16 +272,7 @@
 						</li>
 					</ul>
 				</li>
-				<li>
-					<h6 class="submenu-hdr"><span>User Management</span></h6>
-					<ul>
-						<li><a href="users.html"><i class="ti ti-users-minus"></i><span>Users</span></a></li>
-						<li><a href="roles-permission.html"><i class="ti ti-shield-plus"></i><span>Roles &
-									Permissions</span></a></li>
-						<li><a href="delete-account.html"><i class="ti ti-user-question"></i><span>Delete
-									Account Request</span></a></li>
-					</ul>
-				</li>
+				
 				<li>
 					<h6 class="submenu-hdr"><span>Membership</span></h6>
 					<ul>

@@ -1,4 +1,5 @@
 {% extends 'base/base.html' %}
+{% load static %}
 
 {% block title %}Login{% endblock %}
 
@@ -11,7 +12,7 @@
                 <div
                     class="login-background position-relative d-lg-flex align-items-center justify-content-center d-lg-block d-none flex-wrap vh-100 overflowy-auto">
                     <div>
-                        <img src="assets/img/authentication/authentication-02.jpg" alt="Img">
+                        <img src="{% static 'lms/assets/img/auth.png' %}" alt="Img">
                     </div>
                     <div class="authen-overlay-item w-100 p-4">
                         <h4 class="text-white mb-3">What's New on Preskool !!!</h4>
@@ -70,7 +71,7 @@
                             {% csrf_token %}
                             <div>
                                 <div class="mx-auto mb-5 text-center">
-                                    <img src="assets/img/authentication/authentication-logo.svg" class="img-fluid"
+                                    <img src="{% static 'lms/assets/img/auth.webp' %}" class="img-fluid"
                                         alt="Logo"> 
                                 </div>
                                 <div class="card">

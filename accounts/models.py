@@ -57,6 +57,12 @@ class User(AbstractUser):
     @property
     def full_name(self):
         return " ".join(filter(None, [self.last_name, self.first_name, self.middle_name]))
+    
+    @property
+    def get_avatar_url(self):
+        if self.avatar:
+            return self.avatar.url
+        return settings.STATIC_URL + "lms/assets/img/profiles/avatar.jpg"
 
 
 class Module(models.Model):
@@ -97,7 +103,7 @@ class Permission(models.Model):
         unique_together = ("module", "action")
 
     def __str__(self):
-        return self.code
+        return self.name
 
 
 class Role(BaseModel):

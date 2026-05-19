@@ -1,0 +1,83 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block title %}Rol ruxsatlari{% endblock %}
+
+{% block content %}
+<div class="page-wrapper">
+    <div class="content">
+
+        <div class="d-md-flex d-block align-items-center justify-content-between mb-3">
+            <div>
+                <h3 class="page-title mb-1">Rol ruxsatlari</h3>
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item">
+                        <a href="{% url 'dashboard' %}">Bosh sahifa</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="{% url 'role_list' %}">Rollar</a>
+                    </li>
+                    <li class="breadcrumb-item active">
+                        {{ role.name }}
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+        <form method="post">
+            {% csrf_token %}
+
+            <div class="card">
+                <div class="card-header">
+                    <h4>{{ role.name }} uchun ruxsatlar</h4>
+                </div>
+
+                <div class="card-body">
+                    <div class="row">
+                        {% for permission in permissions %}
+                            <div class="col-md-4 mb-3">
+                                <div class="form-check border rounded p-3">
+                                    <input 
+                                        class="form-check-input ms-0 me-2"
+                                        type="checkbox"
+                                        name="permissions"
+                                        value="{{ permission.id }}"
+                                        id="permission_{{ permission.id }}"
+                                        {% if permission.id in selected_permissions %}checked{% endif %}
+                                    >
+
+                                    <label 
+                                        class="form-check-label ms-4"
+                                        for="permission_{{ permission.id }}"
+                                    >
+                                        <b>{{ permission.name }}</b>
+                                        <br>
+                                        <small class="text-muted">
+                                            {{ permission.module.name }} / {{ permission.get_action_display }}
+                                        </small>
+                                    </label>
+                                </div>
+                            </div>
+                        {% empty %}
+                            <div class="col-12 text-center py-5">
+                                <h5>Ruxsatlar mavjud emas</h5>
+                                <p class="text-muted">Avval Permission obyektlarini yarating.</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="card-footer d-flex justify-content-end">
+                    <a href="{% url 'role_list' %}" class="btn btn-light me-2">
+                        Bekor qilish
+                    </a>
+                    <button type="submit" class="btn btn-primary">
+                        Saqlash
+                    </button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+{% endblock %}

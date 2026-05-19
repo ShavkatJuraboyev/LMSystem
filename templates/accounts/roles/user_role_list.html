@@ -1,0 +1,156 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block title %}Foydalanuvchi rollari{% endblock %}
+
+{% block content %}
+<div class="page-wrapper">
+    <div class="content">
+
+        <div class="d-md-flex d-block align-items-center justify-content-between mb-3">
+            <div class="my-auto mb-2">
+                <h3 class="page-title mb-1">Foydalanuvchi rollari</h3>
+                <nav>
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item">
+                            <a href="{% url 'dashboard' %}">Bosh sahifa</a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">Foydalanuvchi rollari</li>
+                    </ol>
+                </nav>
+            </div>
+
+            <div class="mb-2">
+                <a href="{% url 'user_role_create' %}" class="btn btn-primary d-flex align-items-center">
+                    <i class="ti ti-square-rounded-plus me-2"></i>Rol biriktirish
+                </a>
+            </div>
+        </div>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <div class="card">
+            <div class="card-header d-flex align-items-center justify-content-between flex-wrap pb-0">
+                <h4 class="mb-3">Biriktirilgan rollar</h4>
+
+                <form method="get" class="d-flex align-items-center flex-wrap">
+                    <div class="input-icon-start mb-3 me-2 position-relative">
+                        <span class="icon-addon">
+                            <i class="ti ti-search"></i>
+                        </span>
+                        <input type="text" name="q" class="form-control" placeholder="Foydalanuvchi qidirish"
+                               value="{{ request.GET.q }}">
+                    </div>
+
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-light">
+                            <i class="ti ti-filter me-1"></i>Filtrlash
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="card-body p-0 py-3">
+                <div class="custom-datatable-filter table-responsive">
+                    <table class="table datatable">
+                        <thead class="thead-light">
+                        <tr>
+                            <th>Foydalanuvchi</th>
+                            <th>Rol</th>
+                            <th>Muassasa</th>
+                            <th>Fakultet</th>
+                            <th>Kafedra</th>
+                            <th>Guruh/Fan</th>
+                            <th>Muddat</th>
+                            <th>Holati</th>
+                            <th>Amallar</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        {% for item in user_roles %}
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <span class="avatar avatar-sm bg-primary-transparent me-2">
+                                            <i class="ti ti-user text-primary"></i>
+                                        </span>
+                                        <div>
+                                            <h6 class="mb-0">{{ item.user.full_name|default:item.user.username }}</h6>
+                                            <small class="text-muted">{{ item.user.username }}</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="badge bg-skyblue-transparent text-skyblue">
+                                        {{ item.role.name }}
+                                    </span>
+                                </td>
+                                <td>{{ item.organization|default:"-" }}</td>
+                                <td>{{ item.faculty|default:"-" }}</td>
+                                <td>{{ item.department|default:"-" }}</td>
+                                <td>
+                                    {% if item.group %}
+                                        {{ item.group }}
+                                    {% elif item.subject %}
+                                        {{ item.subject }}
+                                    {% else %}
+                                        -
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if item.starts_at %}{{ item.starts_at|date:"d.m.Y" }}{% else %}-{% endif %}
+                                    /
+                                    {% if item.ends_at %}{{ item.ends_at|date:"d.m.Y" }}{% else %}Cheksiz{% endif %}
+                                </td>
+                                <td>
+                                    {% if item.is_active %}
+                                        <span class="badge bg-success">Faol</span>
+                                    {% else %}
+                                        <span class="badge bg-danger">Nofaol</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <a href="{% url 'user_role_edit' item.id %}"
+                                           class="btn btn-outline-light bg-white btn-icon d-flex align-items-center justify-content-center rounded-circle p-0 me-2">
+                                            <i class="ti ti-edit-circle text-primary"></i>
+                                        </a>
+                                        <form method="post" action="{% url 'user_role_delete' item.id %}"
+                                              onsubmit="return confirm('Ushbu biriktirilgan rolni o‘chirmoqchimisiz?')">
+                                            {% csrf_token %}
+                                            <button type="submit"
+                                                    class="btn btn-outline-light bg-white btn-icon d-flex align-items-center justify-content-center rounded-circle p-0">
+                                                <i class="ti ti-trash-x text-danger"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% empty %}
+                            <tr>
+                                <td colspan="9" class="text-center py-5">
+                                    <h5>Hozircha foydalanuvchiga rol biriktirilmagan</h5>
+                                    <p class="text-muted">Rol biriktirish orqali boshlang.</p>
+                                    <a href="{% url 'user_role_create' %}" class="btn btn-primary">
+                                        <i class="ti ti-square-rounded-plus me-2"></i>Rol biriktirish
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

@@ -5,13 +5,13 @@
 			<!-- Logo -->
 			<div class="header-left active">
 				<a href="" class="logo logo-normal">
-					<img src="{% static 'lms/assets/img/logo.svg' %}" alt="Logo">
+					<img src="{% static 'lms/assets/img/logo.png' %}" alt="Logo">
 				</a>
 				<a href="" class="logo-small">
-					<img src="{% static 'lms/assets/img/logo-small.svg' %}" alt="Logo">
+					<img src="{% static 'lms/assets/img/logo.png' %}" alt="Logo">
 				</a>
 				<a href="" class="dark-logo">
-					<img src="{% static 'lms/assets/img/logo-dark.svg' %}" alt="Logo">
+					<img src="{% static 'lms/assets/img/logo.png' %}" alt="Logo">
 				</a>
 				<a id="toggle_btn" href="javascript:void(0);">
 					<i class="ti ti-menu-deep"></i>
@@ -26,7 +26,7 @@
 					<span></span>
 				</span>
 			</a>
-
+ 
 			<div class="header-user">
 				<div class="nav user-menu">
 
@@ -94,6 +94,7 @@
 								</div>
 							</div>
 						</div>
+
 						<div class="pe-1">
 							<div class="dropdown">
 								<a href="#" class="btn btn-outline-light bg-white btn-icon me-1"
@@ -155,6 +156,7 @@
 								</div>
 							</div>
 						</div>
+
 						<div class="pe-1">
 							<a href="#" id="dark-mode-toggle"
 								class="dark-mode-toggle activate btn btn-outline-light bg-white btn-icon me-1">
@@ -165,6 +167,7 @@
 								<i class="ti ti-brightness-up"></i>
 							</a>
 						</div>
+
 						<div class="pe-1" id="notification_item">
 							<a href="#" class="btn btn-outline-light bg-white btn-icon position-relative me-1"
 								id="notification_popup">
@@ -279,48 +282,52 @@
 								</div>
 							</div>
 						</div>
+
 						<div class="pe-1">
 							<a href="" class="btn btn-outline-light bg-white btn-icon position-relative me-1">
 								<i class="ti ti-brand-hipchat"></i>
 								<span class="chat-status-dot"></span>
 							</a>
 						</div>
+
 						<div class="pe-1">
 							<a href="#" class="btn btn-outline-light bg-white btn-icon me-1">
 								<i class="ti ti-chart-bar"></i>
 							</a>
 						</div>
+
 						<div class="pe-1">
 							<a href="#" class="btn btn-outline-light bg-white btn-icon me-1" id="btnFullscreen">
 								<i class="ti ti-maximize"></i>
 							</a>
 						</div>
+
 						<div class="dropdown ms-1">
 							<a href="javascript:void(0);" class="dropdown-toggle d-flex align-items-center"
 								data-bs-toggle="dropdown">
 								<span class="avatar avatar-md rounded">
-									<img src="{% static 'lms/assets/img/profiles/avatar-27.jpg' %}" alt="Img" class="img-fluid">
+									<img src="{% static 'lms/assets/img/profiles/avatar.jpg' %}" alt="Img" class="img-fluid">
 								</span>
 							</a>
 							<div class="dropdown-menu">
 								<div class="d-block">
 									<div class="d-flex align-items-center p-2">
 										<span class="avatar avatar-md me-2 online avatar-rounded">
-											<img src="{% static 'lms/assets/img/profiles/avatar-27.jpg' %}" alt="img">
+											<img src="{{request.user.get_avatar_url}}" alt="img">
 										</span>
 										<div>
-											<h6 class="">Kevin Larry</h6>
-											<p class="text-primary mb-0">Administrator</p>
+											<h6 class="">{{request.user.first_name}} {{request.user.last_name}}</h6>
+											<p class="text-primary mb-0">{{request.user.role_assignments}}</p>
 										</div>
 									</div>
 									<hr class="m-0">
 									<a class="dropdown-item d-inline-flex align-items-center p-2" href="">
-										<i class="ti ti-user-circle me-2"></i>My Profile</a>
+										<i class="ti ti-user-circle me-2"></i>Profile</a>
 									<a class="dropdown-item d-inline-flex align-items-center p-2"
-										href=""><i class="ti ti-settings me-2"></i>Settings</a>
+										href=""><i class="ti ti-settings me-2"></i>Sozlamalar</a>
 									<hr class="m-0">
 									<a class="dropdown-item d-inline-flex align-items-center p-2" href="{% url 'logout' %}"><i
-											class="ti ti-login me-2"></i>Logout</a>
+											class="ti ti-login me-2"></i>Chiqish</a>
 								</div>
 							</div>
 						</div>
